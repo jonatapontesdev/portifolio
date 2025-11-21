@@ -2,7 +2,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { APP_TITLE, getLoginUrl, SERVICES } from "@/const";
-import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowRight, Github, Linkedin, Mail, Code2, Zap, Cpu, Rocket } from "lucide-react";
 import { useState } from "react";
 import ContactForm from "@/components/ContactForm";
 
@@ -57,41 +57,54 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-primary/10 to-background">
-        <div className="container">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Transforme sua visao em realidade com tecnologia
+      <section className="py-20 md:py-40 bg-gradient-to-br from-primary via-primary/80 to-background text-primary-foreground relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 right-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-10 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+        </div>
+        <div className="container relative z-10">
+          <div className="max-w-4xl">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur border border-white/20 mb-6">
+              <Rocket className="w-4 h-4" />
+              <span className="text-sm font-medium">Tecnologia de Ponta</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl lg:text-7xl font-bold mb-6 leading-tight">
+              Transforme sua visão em realidade
             </h1>
-            <p className="text-lg text-muted-foreground mb-8">
-              Automatizacao inteligente, videos com IA, desenvolvimento web e muito mais. Solucoes completas para impulsionar seu negocio.
+            <p className="text-xl text-white/90 mb-8 max-w-2xl leading-relaxed">
+              Automação inteligente, vídeos com IA, desenvolvimento web e muito mais. Soluções tecnológicas completas para impulsionar seu negócio.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" onClick={() => document.getElementById('servicos')?.scrollIntoView({ behavior: 'smooth' })}>
-                Conhecer Servicos <ArrowRight className="ml-2 w-4 h-4" />
+              <Button size="lg" className="bg-white text-primary hover:bg-white/90" onClick={() => document.getElementById('servicos')?.scrollIntoView({ behavior: 'smooth' })}>
+                Explorar Serviços <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
-              <Button size="lg" variant="outline">
-                Ver Portfolio
+              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">
+                Ver Portfólio
               </Button>
+            </div>
+            <div className="mt-12 flex flex-wrap gap-6 text-sm text-white/80">
+              <div className="flex items-center gap-2"><Code2 className="w-4 h-4" /> React + TypeScript</div>
+              <div className="flex items-center gap-2"><Cpu className="w-4 h-4" /> tRPC + Express</div>
+              <div className="flex items-center gap-2"><Zap className="w-4 h-4" /> MySQL + Drizzle</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="servicos" className="py-20 md:py-32">
+      <section id="servicos" className="py-20 md:py-32 bg-card/50">
         <div className="container">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Nossos Servicos</h2>
           <p className="text-muted-foreground mb-12 max-w-2xl">
-            Oferecemos solucoes completas em tecnologia, desde automacao inteligente ate desenvolvimento web profissional.
+            Solucoes tecnologicas completas para transformar sua visao em realidade.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {SERVICES.map((service) => (
-              <Card key={service.id} className="p-6 hover:shadow-lg transition">
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-                <p className="text-muted-foreground text-sm">{service.description}</p>
+              <Card key={service.id} className="p-6 hover:shadow-lg hover:border-primary/50 transition duration-300 group cursor-pointer">
+                <div className="text-5xl mb-4 group-hover:scale-110 transition duration-300">{service.icon}</div>
+                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition">{service.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
               </Card>
             ))}
           </div>

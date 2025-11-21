@@ -7,7 +7,25 @@ import { defineConfig } from "vite";
 import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
 
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime()];
+const plugins = [
+  react(),
+  tailwindcss({
+    css: {
+      "tailwind.css": {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#810781",
+              secondary: "#a71978",
+            },
+          },
+        },
+      },
+    },
+  }),
+  jsxLocPlugin(),
+  vitePluginManusRuntime(),
+];
 
 export default defineConfig({
   plugins,

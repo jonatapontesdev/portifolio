@@ -1,13 +1,11 @@
-import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { APP_TITLE, getLoginUrl, SERVICES } from "@/const";
+import { APP_TITLE, SERVICES } from "@/const";
 import { ArrowRight, Github, Linkedin, Mail, Code2, Zap, Cpu, Rocket } from "lucide-react";
 import { useState } from "react";
 import ContactForm from "@/components/ContactForm";
 
 export default function Home() {
-  const { user, isAuthenticated, logout } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -37,22 +35,6 @@ export default function Home() {
               Contato
             </a>
           </div>
-
-          {/* Auth Buttons */}
-          <div className="flex items-center gap-2">
-            {isAuthenticated ? (
-              <>
-                <span className="text-sm hidden sm:inline">Ola, {user?.name}</span>
-                <Button variant="outline" size="sm" onClick={logout}>
-                  Sair
-                </Button>
-              </>
-            ) : (
-              <Button size="sm" onClick={() => (window.location.href = getLoginUrl())}>
-                Entrar
-              </Button>
-            )}
-          </div>
         </div>
       </nav>
 
@@ -66,20 +48,20 @@ export default function Home() {
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur border border-white/20 mb-6">
               <Rocket className="w-4 h-4" />
-              <span className="text-sm font-medium">Tecnologia de Ponta</span>
+              <span className="text-sm font-medium">Jonata Pontes - Desenvolvedor Full Stack</span>
             </div>
             <h1 className="text-5xl md:text-7xl lg:text-7xl font-bold mb-6 leading-tight">
-              Transforme sua visão em realidade
+              Automação com IA, RPA e Processamento de Vídeos
             </h1>
             <p className="text-xl text-white/90 mb-8 max-w-2xl leading-relaxed">
-              Automação inteligente, vídeos com IA, desenvolvimento web e muito mais. Soluções tecnológicas completas para impulsionar seu negócio.
+              Crio soluções completas que vão da camada visual ao processamento profundo com IA, com foco em automação de tarefas, integrações complexas e desenvolvimento web.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button size="lg" className="bg-white text-primary hover:bg-white/90" onClick={() => document.getElementById('servicos')?.scrollIntoView({ behavior: 'smooth' })}>
-                Explorar Serviços <ArrowRight className="ml-2 w-4 h-4" />
+                Conheça minhas skills <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
-              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10">
-                Ver Portfólio
+              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10" onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}>
+                Ver meus projetos
               </Button>
             </div>
             <div className="mt-12 flex flex-wrap gap-6 text-sm text-white/80">
@@ -94,19 +76,27 @@ export default function Home() {
       {/* Services Section */}
       <section id="servicos" className="py-20 md:py-32 bg-card/50">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Nossos Servicos</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Minhas Competências</h2>
           <p className="text-muted-foreground mb-12 max-w-2xl">
-            Solucoes tecnologicas completas para transformar sua visao em realidade.
+            Crio soluções completas — da camada visual ao processamento profundo com IA.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {SERVICES.map((service) => (
-              <Card key={service.id} className="p-6 hover:shadow-lg hover:border-primary/50 transition duration-300 group cursor-pointer">
-                <div className="text-5xl mb-4 group-hover:scale-110 transition duration-300">{service.icon}</div>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition">{service.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
-              </Card>
-            ))}
+            <Card className="p-6 hover:shadow-lg hover:border-primary/50 transition duration-300 group cursor-pointer">
+              <div className="text-5xl mb-4 group-hover:scale-110 transition duration-300">🧠</div>
+              <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition">Inteligência Artificial</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">Criação de roteiros, imagens e vídeos com IA, modelos LSTM, pipelines de treino e validação, e construção de prompts avançados.</p>
+            </Card>
+            <Card className="p-6 hover:shadow-lg hover:border-primary/50 transition duration-300 group cursor-pointer">
+              <div className="text-5xl mb-4 group-hover:scale-110 transition duration-300">🤖</div>
+              <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition">RPA - Robotic Process Automation</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">Desenvolvimento de automações completas em Python, Node.js e C#, com extração de dados, leitura de planilhas e navegação multi-janela.</p>
+            </Card>
+            <Card className="p-6 hover:shadow-lg hover:border-primary/50 transition duration-300 group cursor-pointer">
+              <div className="text-5xl mb-4 group-hover:scale-110 transition duration-300">🎥</div>
+              <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition">Processamento de Vídeos</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed">Sistema completo de corte automático de vídeos com IA, geração de vídeos do zero, e uso de FFmpeg, Whisper, DALL·E e OpenAI GPT.</p>
+            </Card>
           </div>
         </div>
       </section>
@@ -116,17 +106,17 @@ export default function Home() {
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Sobre JP Digital Solutions</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Sobre Mim</h2>
               <p className="text-muted-foreground mb-4">
-                Desde 2023, ajudamos empresas a transformar suas operacoes atraves de tecnologia inteligente e inovadora.
+                Sou um desenvolvedor e automador full stack com forte foco em RPA, IA, backend, automação de tarefas, processamento de vídeos, sistemas web, integrações complexas e aprendizagem contínua.
               </p>
               <p className="text-muted-foreground mb-6">
-                Nosso time especializado em IA, automacao e desenvolvimento web trabalha para entregar solucoes que realmente fazem diferenca.
+                Atuo criando soluções completas — da camada visual ao processamento profundo com IA. Trabalho com projetos robustos envolvendo Python, Node.js, Laravel, Django, FastAPI, C#, Selenium, Integrações financeiras, automação de servidores e inteligência artificial aplicada.
               </p>
-              <Button>Saiba Mais</Button>
+              <Button onClick={() => document.getElementById('contato')?.scrollIntoView({ behavior: 'smooth' })}>Entre em contato</Button>
             </div>
             <div className="bg-muted rounded-lg h-64 flex items-center justify-center">
-              <span className="text-muted-foreground">Foto do fundador</span>
+              <span className="text-muted-foreground">Sua foto aqui</span>
             </div>
           </div>
         </div>
@@ -135,23 +125,39 @@ export default function Home() {
       {/* Portfolio Preview */}
       <section id="portfolio" className="py-20 md:py-32">
         <div className="container">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Projetos Recentes</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Projetos que Costumo Desenvolver</h2>
           <p className="text-muted-foreground mb-12">
-            Veja alguns dos projetos que desenvolvemos para nossos clientes.
+            Abaixo alguns exemplos dos tipos de projetos que desenvolvo.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[1, 2, 3].map((i) => (
-              <Card key={i} className="overflow-hidden hover:shadow-lg transition">
-                <div className="bg-muted h-48 flex items-center justify-center">
-                  <span className="text-muted-foreground">Projeto {i}</span>
-                </div>
-                <div className="p-6">
-                  <h3 className="font-bold mb-2">Projeto {i}</h3>
-                  <p className="text-sm text-muted-foreground">Descricao do projeto</p>
-                </div>
-              </Card>
-            ))}
+            <Card className="overflow-hidden hover:shadow-lg transition">
+              <div className="bg-muted h-48 flex items-center justify-center">
+                <span className="text-muted-foreground">Sistema Full-Stack</span>
+              </div>
+              <div className="p-6">
+                <h3 className="font-bold mb-2">Sistemas Full-Stack Completos</h3>
+                <p className="text-sm text-muted-foreground">Front-end, back-end e banco de dados, com dashboards administrativos avançados.</p>
+              </div>
+            </Card>
+            <Card className="overflow-hidden hover:shadow-lg transition">
+              <div className="bg-muted h-48 flex items-center justify-center">
+                <span className="text-muted-foreground">Aplicações de IA</span>
+              </div>
+              <div className="p-6">
+                <h3 className="font-bold mb-2">Aplicações de IA para Mídias Sociais</h3>
+                <p className="text-sm text-muted-foreground">Criação de vídeos automáticos a partir de texto para TikTok, YouTube e Instagram.</p>
+              </div>
+            </Card>
+            <Card className="overflow-hidden hover:shadow-lg transition">
+              <div className="bg-muted h-48 flex items-center justify-center">
+                <span className="text-muted-foreground">RPA Profissional</span>
+              </div>
+              <div className="p-6">
+                <h3 className="font-bold mb-2">RPA Profissional</h3>
+                <p className="text-sm text-muted-foreground">Automação de processos empresariais, com integração com APIs de pagamento.</p>
+              </div>
+            </Card>
           </div>
 
           <div className="mt-12 text-center">
@@ -193,37 +199,35 @@ export default function Home() {
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
-              <h4 className="font-bold mb-4">JP Digital Solutions</h4>
+              <h4 className="font-bold mb-4">Jonata Pontes</h4>
               <p className="text-sm text-muted-foreground">
-                Transformando ideias em solucoes tecnologicas.
+                Desenvolvedor Full Stack e Automação
               </p>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Servicos</h4>
+              <h4 className="font-bold mb-4">Seções</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition">IA & Videos</a></li>
-                <li><a href="#" className="hover:text-foreground transition">Automacao</a></li>
-                <li><a href="#" className="hover:text-foreground transition">Web</a></li>
+                <li><a href="#servicos" className="hover:text-foreground transition">Skills</a></li>
+                <li><a href="#portfolio" className="hover:text-foreground transition">Projetos</a></li>
+                <li><a href="#sobre" className="hover:text-foreground transition">Sobre</a></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-4">Empresa</h4>
+              <h4 className="font-bold mb-4">Contato</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li><a href="#" className="hover:text-foreground transition">Sobre</a></li>
-                <li><a href="#" className="hover:text-foreground transition">Portfolio</a></li>
-                <li><a href="#" className="hover:text-foreground transition">Contato</a></li>
+                <li><a href="#contato" className="hover:text-foreground transition">Formulário de Contato</a></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold mb-4">Redes Sociais</h4>
               <div className="flex gap-4">
-                <a href="#" className="text-muted-foreground hover:text-foreground transition">
+                <a href="https://github.com/jonatansp" className="text-muted-foreground hover:text-foreground transition" target="_blank">
                   <Github className="w-5 h-5" />
                 </a>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition">
+                <a href="https://www.linkedin.com/in/jonatansp/" className="text-muted-foreground hover:text-foreground transition" target="_blank">
                   <Linkedin className="w-5 h-5" />
                 </a>
-                <a href="#" className="text-muted-foreground hover:text-foreground transition">
+                <a href="mailto:jonatansp@hotmail.com" className="text-muted-foreground hover:text-foreground transition">
                   <Mail className="w-5 h-5" />
                 </a>
               </div>
@@ -231,7 +235,7 @@ export default function Home() {
           </div>
 
           <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2025 JP Digital Solutions. Todos os direitos reservados.</p>
+            <p>&copy; 2024 Jonata Pontes. Todos os direitos reservados.</p>
           </div>
         </div>
       </footer>
